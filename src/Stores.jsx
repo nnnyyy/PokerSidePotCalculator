@@ -23,7 +23,7 @@ export class HoldemStore {
     }
 
     setCash(idx, allinCash) {
-        this.players[idx].allinCash = allinCash;
+        this.players[idx].allinCash = Number(allinCash);
         this.recalc();
     }
 
@@ -31,9 +31,11 @@ export class HoldemStore {
         this.players[idx].state = state;
         if (state == STATE_FOLD) {
             this.players[idx].allinCash = 0;
+            this.players[idx].cacheCash = 0;
             this.players[idx].rank = 10;
         } else {
             this.players[idx].allinCash = 100;
+            this.players[idx].cacheCash = 0;
         }
         this.recalc();
     }
@@ -53,13 +55,15 @@ export class HoldemStore {
         const pots = [];
         while (playingUsers.filter((p) => p.cacheCash > 0).length > 0) {
             const playables = playingUsers.filter((p) => p.cacheCash > 0);
-            playables.sort((a, b) => (a.cacheCash > b.cacheCash ? 1 : -1));
+            playables.sort((a, b) => (Number(a.cacheCash) > Number(b.cacheCash) ? 1 : -1));
             const minBet = playables[0].cacheCash;
             const pot = minBet * playables.length;
             const playerForPot = playables;
             pots.push({ pot, playerForPot });
             playables.forEach((p) => (p.cacheCash -= minBet));
         }
+
+        console.log(pots);
 
         let round = 1;
         for (const potInfo of pots) {
