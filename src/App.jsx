@@ -1,11 +1,19 @@
 import React, { useRef, useState } from "react";
 import { observer } from "mobx-react";
-import holdemStore, { STATE_FOLD, STATE_PLAY } from "./Stores";
+import holdemStore, { STATE_FOLD, STATE_PLAY, globalStore } from "./Stores";
+import { UICalc } from "./UICalc";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const App = observer(() => {
+	const UICalcCheck = observer(() => {
+		if (globalStore.isCalcOpen) {
+			return <UICalc idx={globalStore.selectedPlayerIdx} />;
+		}
+	});
 	return (
 		<div className="App">
+			<UICalcCheck />
 			<div className="p-3">
 				<div className="h2">사이드팟 계산</div>
 				<button type="button" className="btn btn-outline-primary mt-3" onClick={(e) => holdemStore.players.forEach((p) => (p.rank = 4))}>
@@ -16,7 +24,7 @@ const App = observer(() => {
 						<tr>
 							<td style={{ width: "100px" }}>이름</td>
 							<td style={{ width: "80px" }}>상태</td>
-							<td style={{ width: "140px" }}>올인 금액</td>
+							<td style={{ width: "180px" }}>올인 금액</td>
 							<td style={{ width: "80px" }}>순위</td>
 							<td style={{ width: "160px" }}>순위 설정</td>
 							<td>결과</td>
@@ -34,6 +42,14 @@ const App = observer(() => {
 									</td>
 									<td>
 										<input style={{ width: "100px" }} disabled={p.state == STATE_FOLD} value={p.allinCash} onChange={(e) => holdemStore.setCash(idx, e.target.value)} />
+										<button
+											type="button"
+											className="btn btn-outline-primary"
+											onClick={(e) => {
+												globalStore.setOpen(true, idx);
+											}}>
+											UI
+										</button>
 									</td>
 									<td>{p.state == STATE_FOLD ? "-" : p.rank}</td>
 									<td>

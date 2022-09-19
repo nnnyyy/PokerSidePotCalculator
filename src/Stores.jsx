@@ -78,6 +78,18 @@ export class HoldemStore {
 
 export default new HoldemStore();
 
-/*
+class GlobalStore {
+	isCalcOpen = false;
+	selectedPlayerIdx = 0;
 
-*/
+	constructor() {
+		makeAutoObservable(this);
+	}
+
+	setOpen(isOpen, idx) {
+		this.selectedPlayerIdx = idx;
+		this.isCalcOpen = isOpen;
+	}
+}
+
+export const globalStore = new GlobalStore();

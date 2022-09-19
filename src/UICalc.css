@@ -1,0 +1,16 @@
+.calc-absolute {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+.calc-absolute .content {
+	background-color: white;
+	border: 1.5px solid black;
+	width: 400px;
+	height: 400px;
+}
