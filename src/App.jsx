@@ -6,9 +6,10 @@ import { UICalc } from "./UICalc";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const App = observer(() => {
+	let initVal = 0;
 	const UICalcCheck = observer(() => {
 		if (globalStore.isCalcOpen) {
-			return <UICalc idx={globalStore.selectedPlayerIdx} />;
+			return <UICalc idx={globalStore.selectedPlayerIdx} initVal={initVal} />;
 		}
 	});
 	return (
@@ -44,8 +45,9 @@ const App = observer(() => {
 										<input style={{ width: "100px" }} disabled={p.state == STATE_FOLD} value={p.allinCash} onChange={(e) => holdemStore.setCash(idx, e.target.value)} />
 										<button
 											type="button"
-											className="btn btn-outline-primary"
+											className="btn btn-outline-primary ms-1"
 											onClick={(e) => {
+												initVal = p.allinCash;
 												globalStore.setOpen(true, idx);
 											}}>
 											UI

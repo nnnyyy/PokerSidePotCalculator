@@ -11,57 +11,12 @@
 .calc-absolute .content {
 	background-color: white;
 	border: 1.5px solid black;
-	width: 400px;
-	height: 400px;
+	width: 290px;
+	height: 450px;
 	border-radius: 4px;
 }
 
 .calc-absolute .content .btn-calc {
 	width: 80px;
 	height: 80px;
-}
-
-.calc-absolute .content .num-1 {
-	left: 10px;
-	top: 10px;
-}
-
-.calc-absolute .content .num-2 {
-	left: 100px;
-	top: 10px;
-}
-
-.calc-absolute .content .num-3 {
-	left: 190px;
-	top: 10px;
-}
-
-.calc-absolute .content .num-4 {
-	left: 10px;
-	top: 100px;
-}
-
-.calc-absolute .content .num-5 {
-	left: 100px;
-	top: 100px;
-}
-
-.calc-absolute .content .num-6 {
-	left: 190px;
-	top: 100px;
-}
-
-.calc-absolute .content .num-7 {
-	left: 10px;
-	top: 190px;
-}
-
-.calc-absolute .content .num-8 {
-	left: 100px;
-	top: 190px;
-}
-
-.calc-absolute .content .num-9 {
-	left: 190px;
-	top: 190px;
 }
